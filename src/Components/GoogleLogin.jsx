@@ -8,12 +8,12 @@ const GoogleLogin = () => {
   const handleClick = async () => {
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
-      console.log(result);
+      console.log(result.user);
       localStorage.setItem("token", result.user.accessToken);
       localStorage.setItem("user", JSON.stringify(result.user));
       navigate("/");
     } catch (error) {
-      console.log(error);
+      console.log("Google Login error 🦓🦓🦓🦓 : ",error);
     }
   };
 

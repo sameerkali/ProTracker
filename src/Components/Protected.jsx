@@ -4,7 +4,8 @@ import { Navigate, Outlet } from "react-router-dom";
 const Protected = () => {
   return (
     <div>
-      {true ? <Outlet /> : <Navigate to="/login" />}
+      <p> I am protected</p>
+      <Link to="/login">back to login</Link>
     </div>
   );
 };
