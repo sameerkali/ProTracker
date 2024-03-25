@@ -1,18 +1,28 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Hero from "./Components/Hero";
-import SignUpForm from "./Components/SignUpForm";
-import LogInForm from "./Components/LogInForm";
+import { AuthContextProvider } from './context/AuthContext';
+import Navbar from "./Components/Navbar";
+// import Hero from "./Components/Hero";
+// import SignUpForm from "./Components/SignUpForm";
+// import LogInForm from "./Components/LogInForm";
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <AuthContextProvider>
+        <Navbar />
         <Routes>
-          <Route path="/" element={<Hero />} />
-          <Route path="/signup" element={<SignUpForm />} />
-          <Route path="/login" element={<LogInForm />} />
+          <Route path='/' element={<Home />} />
+          <Route path='/signin' element={<Signin />} />
+          <Route
+            path='/account'
+            element={
+              <Protected>
+                <Account />
+              </Protected>
+            }
+          />
         </Routes>
-      </BrowserRouter>
+      </AuthContextProvider>
     </div>
   );
 }

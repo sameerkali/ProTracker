@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SignIn from "./SignInWithGoogle";
 
 const LogInForm = () => {
   return (
@@ -49,12 +50,13 @@ const LogInForm = () => {
                 </span>
               </div>
               <div className="flex w-[30rem] mt-10">
-                <button
+              <SignIn/>
+                {/* <button
                   type="submit"
                   className=" mt-4 sm:w-[30rem] border rounded-md p-3 border-gray-600 w-[14rem] mr-4"
                 >
                   Google
-                </button>
+                </button> */}
                 <button
                   type="submit"
                   className=" mt-4 sm:w-[30rem] border rounded-md p-3 border-gray-600 w-[14rem]"
