@@ -8,19 +8,15 @@ import Protected from "./Components/Protected";
 import NotFound from "./Components/NotFound";
 
 function App() {
-  const isAuthenticated = localStorage.getItem("token");
-  console.log(isAuthenticated)
-  const navigate = useNavigate()
+  // const isAuthenticated = localStorage.getItem("token");
+  // console.log(isAuthenticated)
+  // const navigate = useNavigate()
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<LogInForm />} />
       <Route path="/signup" element={<SignUpForm />} />
-      {isAuthenticated !== null ? (
-        <Route path="/protect" element={<Protected />} />
-      ) : (
-        <navigate to="/login" />
-      )}
+      
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import GoogleLogin from './GoogleLogin'
 import { signOut } from 'firebase/auth'
 import { auth } from '../firebase'
@@ -9,7 +9,7 @@ const Home = () => {
   const navigate = useNavigate()
   const token = localStorage.getItem('token')
   const user = JSON.parse(localStorage.getItem('user'))
-  // console.log(user)
+  // console.log(user?.photoURL)
   const handleLogout = async () => {
     try {
       await signOut(auth)
@@ -23,9 +23,10 @@ const Home = () => {
   return (
     <div>
     <h1> This is Home Page</h1>
-    <p>{user?.displayName}</p>
-    <p>{user?.email}</p>
-    {token && <img src={`${user?.photoURL}`} />}
+    <p>{user ? user?.displayName : "no name"}</p>
+    <p>{user ? user?.email: "no email"}</p>
+    {user&& <img src={`${user?.photoURL}`} /> }
+    <br/>
     {token? <button onClick={handleLogout}>LogOut</button> : <GoogleLogin/>}
     
     </div>
