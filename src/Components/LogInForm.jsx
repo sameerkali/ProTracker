@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import GoogleLogin from "./GoogleLogin";
 
 const LogInForm = () => {
   return (
@@ -7,10 +8,10 @@ const LogInForm = () => {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2 sm:ml-0 ml-[3rem]">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none font-sans">
               Dominate Your Goals With ProTracker.
             </h1>
-            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 ">
+            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 font-sans">
               The platform for handling your tasks with ProTracker to visualize
               your performance on a daily, weekly, monthly, and yearly basis.
             </p>
@@ -49,13 +50,13 @@ const LogInForm = () => {
                 </span>
               </div>
               <div className="flex w-[30rem] mt-10">
-              {/* <SignIn/> */}
-                <button
+              <GoogleLogin/>
+                {/* <button
                   type="submit"
                   className=" mt-4 sm:w-[30rem] border rounded-md p-3 border-gray-600 w-[14rem] mr-4"
                 >
                   Google
-                </button>
+                </button> */}
                 <button
                   type="submit"
                   className=" mt-4 sm:w-[30rem] border rounded-md p-3 border-gray-600 w-[14rem]"
