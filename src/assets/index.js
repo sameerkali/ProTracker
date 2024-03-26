@@ -1,2 +1,3 @@
 import gradient from "./gradient.png";
-export { gradient };
+import google from "./google.svg";
+export { gradient, google } ;
