@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import GoogleLogin from "./GoogleLogin";
-import { github } from "../assets";
 import GitHubLogin from "./GitHubLogin";
+import { grid, gridMobile } from "../assets";
 
 const SignUpForm = () => {
   const [displayName, setDisplayName] = useState("");
@@ -13,7 +13,6 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  console.log("github image: ", github);
 
   const handleSignup = async event => {
     event.preventDefault();
@@ -64,10 +63,23 @@ const SignUpForm = () => {
 
   return (
     <section className="w-full h-[90vh] py-12 md:py-24 lg:py-32 xl:py-48 mt-[10rem]  sm:mt-[-2rem] ">
-      <div className="container px-4 md:px-6">
+      {/* Conditional rendering for different grid images based on screen size */}
+      {window.innerWidth >= 768
+        ? <img
+            className="absolute top-0 z-0 w-full h-full object-cover  md:block "
+            src={grid}
+            alt="Grid background"
+          />
+        : <img
+            className="absolute top-0 left-14 z-0 w-[50rem] h-[67rem] object-cover opacity-50 "
+            src={gridMobile}
+            alt="Grid background"
+          />}
+
+      <div className="container px-4 md:px-6 z-10 relative">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2 sm:ml-0 ml-[3rem]">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+            <h1 className="text-4xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
               Dominate Your Goals With ProTracker.
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 ">
@@ -88,7 +100,7 @@ const SignUpForm = () => {
             {/* ///////////////////////////////// */}
             <form className="flex-1" onSubmit={handleSignup}>
               <div className="sm:flex flex-1 mt-4 w-[30rem]">
-                <label className="input input-bordered flex items-center gap-2 mr-4 sm:w-[14.4rem] bg-transparent">
+                <label className="input input-bordered flex items-center gap-2 mr-4 sm:w-[14.4rem] bg-[#1d232ad6]">
                   <input
                     type="text"
                     className="grow"
@@ -97,7 +109,7 @@ const SignUpForm = () => {
                     onChange={e => setDisplayName(e.target.value)}
                   />
                 </label>
-                <label className="input input-bordered flex items-center gap-2 sm:mt-0 mt-4 w-[29rem] sm:w-[14.4rem]">
+                <label className="input input-bordered flex items-center gap-2 sm:mt-0 mt-4 w-[29rem] sm:w-[14.4rem] bg-[#1d232ad6]">
                   <input
                     type="text"
                     className="grow"
@@ -107,7 +119,7 @@ const SignUpForm = () => {
                   />
                 </label>
               </div>
-              <label className="input input-bordered flex items-center gap-2 sm:w-[29.8rem] w-[29rem] mt-4">
+              <label className="input input-bordered flex items-center gap-2 sm:w-[29.8rem] w-[29rem] mt-4 bg-[#1d232ad6]">
                 <input
                   type="text"
                   className="grow"
@@ -116,7 +128,7 @@ const SignUpForm = () => {
                   onChange={e => setEmail(e.target.value)}
                 />
               </label>
-              <label className="input input-bordered flex items-center gap-2 sm:w-[29.8rem] w-[29rem] mt-4">
+              <label className="input input-bordered flex items-center gap-2 sm:w-[29.8rem] w-[29rem] mt-4 bg-[#1d232ad6]">
                 <input
                   type="password"
                   className="grow"
@@ -127,7 +139,7 @@ const SignUpForm = () => {
               </label>
               <button
                 type="submit"
-                className=" mt-4 sm:w-[30rem] border rounded-md p-3 border-gray-600 w-[29rem]"
+                className=" mt-4 sm:w-[30rem] border rounded-md p-3 border-gray-600 w-[29rem] "
               >
                 SignUp
               </button>
@@ -137,7 +149,7 @@ const SignUpForm = () => {
                 </p>}
               <div className="flex mt-3 justify-between ">
                 <span className="">
-                already have an account?{" "}
+                  already have an account?{" "}
                   <Link to="/login" className="ml-3 text-gray-100 underline">
                     LogIn
                   </Link>
