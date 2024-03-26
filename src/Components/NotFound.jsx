@@ -1,15 +1,19 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { notFound } from "../assets";
+import { Link } from "react-router-dom";
 
 const NotFound = () => {
   return (
-    <div>
-        <p>NotFound</p>
-        back to Login 
-        <Link to={`/login`}> Login</Link>
-        <button></button>
+    <div className="flex flex-col h-[100vh] justify-center items-center">
+    <h1 className="sm:text-[13rem] text-[5rem]">Error 404</h1>
+      <p>
+        Page Not Found.{" "}
+        <Link className="underline" to="/">
+          Return Home
+        </Link>
+      </p>
     </div>
-  )
-}
+  );
+};
 
-export default NotFound
+export default NotFound;
