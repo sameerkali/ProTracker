@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { auth, githubAuthProvider } from "../firebase";
 import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { github } from "../assets";
 
 const GitHubLogin = () => {
@@ -23,7 +23,7 @@ const GitHubLogin = () => {
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     } catch (error) {
-      setError(error);
+      setError(error.message);
     } finally {
       setIsLoading(false);
     }
