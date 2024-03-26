@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 460.34 444.82" version="1.0">
+  <defs id="defs4">
+    <linearGradient id="linearGradient3206" x1="171.37" gradientUnits="userSpaceOnUse" y1="343.67" gradientTransform="matrix(.99139 -.13094 .13094 .99139 -65.848 49.985)" x2="181.28" y2="378.15">
+      <stop id="stop3166" stop-color="#c8c800" offset="0"/>
+      <stop id="stop3168" stop-color="#ffff49" offset="1"/>
+    </linearGradient>
+  </defs>
+  <g id="layer1" transform="translate(-117.8 -304.41)">
+    <path id="path3162" fill-opacity=".39216" d="m133.07 372.04c50.97-19.83 134.54-30.12 134.54-30.12l238.09-31.44 25.6 193.78s13.67 113.15 46.85 167.19c-77.62 32.18-215.04 52.19-215.04 52.19l-193.78 25.59-43.78-331.48s-6.98-26.45 7.52-45.71z"/>
+    <path id="rect2385" stroke="#000" stroke-width="4" fill="url(#linearGradient3206)" d="m125.64 364.97c58.48-16.83 137.04-27.11 137.04-27.11l238.1-31.45 25.59 193.78s8.77 76 41.94 130.03c-63.19 76.14-210.13 89.35-210.13 89.35l-193.78 25.6-43.78-331.49s-3.8-31.87 5.02-48.71z"/>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>Blank sticky note</dc:title>
+        <dc:date>2008-07-07T06:00:01</dc:date>
+        <dc:description>A blank sticky note to write your own text on</dc:description>
+        <dc:source>http://openclipart.org/detail/17620/blank-sticky-note-by-lemmling</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>lemmling</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>how i did it</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>memo</rdf:li>
+            <rdf:li>note</rdf:li>
+            <rdf:li>office</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>sticky note</rdf:li>
+            <rdf:li>svg</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>
