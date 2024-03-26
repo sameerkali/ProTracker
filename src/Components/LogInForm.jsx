@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import GoogleLogin from "./GoogleLogin";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+import GitHubLogin from "./GitHubLogin";
 
 const LogInForm = () => {
   const [email, setEmail] = useState("");
@@ -45,6 +46,15 @@ const LogInForm = () => {
             </p>
           </div>
           <div className="w-full max-w-sm space-y-2 sm:ml-[-5rem] ">
+          <div className="flex justify-center gap-16 ml-20 mb-7 mt-7">
+              <div>
+                <GoogleLogin />
+              </div>
+              <div className="mt-[-4px]">
+                <GitHubLogin />
+              </div>
+            </div>
+            <hr className="w-[30rem] border-t-2 border-gray-600" />
             {/* //////////////////////////////// */}
             <form className="flex-1 " onSubmit={handleLogin}>
               <label className="input input-bordered flex items-center gap-2 sm:w-[29.8rem] w-[29rem] mt-4">
@@ -91,15 +101,7 @@ const LogInForm = () => {
               </div>
               
             </form>
-            <div className="flex w-[30rem] mt-10">
-                <GoogleLogin />
-                <button
-                  type="submit"
-                  className=" mt-4 sm:w-[30rem] border rounded-md p-3 border-gray-600 w-[14rem]"
-                >
-                  GitHub
-                </button>
-              </div>
+           
             {/* //////////////////////////////// */}
           </div>
         </div>

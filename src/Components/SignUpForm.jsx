@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import GoogleLogin from "./GoogleLogin";
+import { github } from "../assets";
+import GitHubLogin from "./GitHubLogin";
 
 const SignUpForm = () => {
   const [displayName, setDisplayName] = useState("");
@@ -11,6 +13,7 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  console.log("github image: ", github);
 
   const handleSignup = async event => {
     event.preventDefault();
@@ -73,16 +76,15 @@ const SignUpForm = () => {
             </p>
           </div>
           <div className="w-full max-w-sm space-y-2 sm:ml-[-5rem] ">
-            <div className="flex w-[30rem] mb-7">
-              <GoogleLogin />
-              <button
-                type="submit"
-                className=" mt-4 sm:w-[30rem] border rounded-md p-3 border-gray-600 w-[14rem]"
-              >
-                GitHub
-              </button>
+            <div className="flex justify-center gap-16 ml-20 mb-7 mt-7">
+              <div>
+                <GoogleLogin />
+              </div>
+              <div className="mt-[-4px]">
+                <GitHubLogin />
+              </div>
             </div>
-            <hr className="w-[30rem] border-t-2 border-gray-600"/>
+            <hr className="w-[30rem] border-t-2 border-gray-600" />
             {/* ///////////////////////////////// */}
             <form className="flex-1" onSubmit={handleSignup}>
               <div className="sm:flex flex-1 mt-4 w-[30rem]">

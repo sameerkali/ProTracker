@@ -1,3 +1,4 @@
 import gradient from "./gradient.png";
 import google from "./google.svg";
-export { gradient, google } ;
+import github from "./github.png";
+export { gradient, google, github } ;
