@@ -8,9 +8,6 @@ import Protected from "./Components/Protected";
 import NotFound from "./Components/NotFound";
 
 function App() {
-  // const isAuthenticated = localStorage.getItem("token");
-  // console.log(isAuthenticated)
-  // const navigate = useNavigate()
   return (
     <Routes>
       <Route path="/" element={<Home />} />

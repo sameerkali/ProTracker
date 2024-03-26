@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { auth, googleAuthProvider } from "../firebase";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,13 @@ import { google } from "../assets";
 
 const GoogleLogin = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const handleClick = async () => {
+    setIsLoading(true); // Set loading state to display spinner
+    setError(null); // Clear any previous errors
+
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
       console.log(result.user);
@@ -14,13 +20,19 @@ const GoogleLogin = () => {
       localStorage.setItem("user", JSON.stringify(result.user));
       navigate("/");
     } catch (error) {
-      console.log("Google Login error 🦓🦓🦓🦓 : ", error);
+      setError(error);
+    } finally {
+      setIsLoading(false); // Ensure spinner is hidden even on errors
     }
   };
 
   return (
     <div className="cursor-pointer">
-      <img onClick={handleClick} src={google} alt='google icon' />
+      {isLoading ? (
+        <img className="h-14 animate-spin" src={google} alt="google icon" />
+      ) : (
+        <img onClick={handleClick} className="h-14" src={google} alt="google icon" />
+      )}
     </div>
   );
 };

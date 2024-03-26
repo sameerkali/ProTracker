@@ -1,26 +1,41 @@
-import React from "react";
-import { auth, googleAuthProvider } from "../firebase";
-import { signInWithPopup } from "firebase/auth";
+import React, { useState, useEffect } from "react";
+import { auth, githubAuthProvider } from "../firebase";
+import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { github } from "../assets";
 
 const GitHubLogin = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const handleClick = async () => {
+    setIsLoading(true);
+    setError(null); // Clear any previous errors
+
     try {
-      const result = await signInWithPopup(auth, googleAuthProvider);
-      console.log(result.user);
-      localStorage.setItem("token", result.user.accessToken);
-      localStorage.setItem("user", JSON.stringify(result.user));
+      const result = await signInWithPopup(auth, githubAuthProvider);
+      const credential = GithubAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     } catch (error) {
-      console.log("Google Login error 🦓🦓🦓🦓 : ", error);
+      setError(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <div className="cursor-pointer">
-      <img onClick={handleClick} className="h-14" src={github} alt="github icon" />
+      {isLoading ? (
+        <img className="h-14 animate-spin" src={github} alt="github icon" />
+      ) : (
+        <img onClick={handleClick} className="h-14" src={github} alt="github icon" />
+      )}
     </div>
   );
 };
