@@ -1,5 +1,4 @@
 import React from "react";
-import { notFound } from "../assets";
 import { Link } from "react-router-dom";
 
 const NotFound = () => {

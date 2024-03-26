@@ -4,6 +4,7 @@ import GoogleLogin from "./GoogleLogin";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import GitHubLogin from "./GitHubLogin";
+import { grid } from "../assets";
 
 const LogInForm = () => {
   const [email, setEmail] = useState("");
@@ -33,11 +34,14 @@ const LogInForm = () => {
   };
 
   return (
-    <section className="w-full h-[90vh] py-12 md:py-24 lg:py-32 xl:py-48 mt-[10rem]  sm:mt-[-2rem] ">
-      <div className="container px-4 md:px-6">
+    <section className="relative w-full h-[48.8rem] py-12 md:py-24 lg:py-32 xl:py-48 mt-[10rem] sm:mt-[-2rem]">
+      {/* Image behind the form */}
+      <img className="absolute top-0 z-0 w-full h-full object-cover" src={grid} alt="Grid background" />
+      
+      <div className="container px-4 md:px-6 z-10 relative">
         <div className="flex flex-col items-center space-y-4 text-center">
           <div className="space-y-2 sm:ml-0 ml-[3rem]">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none font-sans">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none font-sans text-white">
               Dominate Your Goals With ProTracker.
             </h1>
             <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400 font-sans">
@@ -45,8 +49,8 @@ const LogInForm = () => {
               your performance on a daily, weekly, monthly, and yearly basis.
             </p>
           </div>
-          <div className="w-full max-w-sm space-y-2 sm:ml-[-5rem] ">
-          <div className="flex justify-center gap-16 ml-20 mb-7 mt-7">
+          <div className="w-full max-w-sm space-y-2 sm:ml-[-5rem]">
+            <div className="flex justify-center gap-16 ml-20 mb-7 mt-7">
               <div>
                 <GoogleLogin />
               </div>
@@ -55,8 +59,8 @@ const LogInForm = () => {
               </div>
             </div>
             <hr className="w-[30rem] border-t-2 border-gray-600" />
-            {/* //////////////////////////////// */}
-            <form className="flex-1 " onSubmit={handleLogin}>
+            {/* Form */}
+            <form className="flex-1 relative z-10" onSubmit={handleLogin}>
               <label className="input input-bordered flex items-center gap-2 sm:w-[29.8rem] w-[29rem] mt-4">
                 <input
                   type="text"
@@ -75,15 +79,12 @@ const LogInForm = () => {
               </label>
               <button
                 type="submit"
-                className=" mt-4 sm:w-[30rem] border rounded-md p-3 border-gray-600 w-[29rem]"
+                className=" mt-4 sm:w-[30rem] bg-[#1d232ad6] border rounded-md p-3 border-gray-600 w-[29rem]"
               >
                 LogIn
               </button>
-              {error &&
-                <p className="text-red-500 mt-2">
-                  {error}
-                </p>}
-              <div className="flex mt-3 justify-between ">
+              {error && <p className="text-red-500 mt-2">{error}</p>}
+              <div className="flex mt-3 justify-between">
                 <span className="">
                   New Member?{" "}
                   <Link to="/signup" className="ml-3 text-gray-100 underline">
@@ -93,16 +94,14 @@ const LogInForm = () => {
                 <span className="mr-[-6rem] underline">
                   <a
                     className="sm:mr-[-1.9rem] sm:ml-[-10rem] mr-[1rem] text-gray-100"
-                    href="/signup"
+                    href="#"
                   >
                     Forgot password
                   </a>
                 </span>
               </div>
-              
             </form>
-           
-            {/* //////////////////////////////// */}
+            {/* End of Form */}
           </div>
         </div>
       </div>

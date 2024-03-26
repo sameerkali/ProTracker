@@ -137,7 +137,7 @@ const SignUpForm = () => {
                 </p>}
               <div className="flex mt-3 justify-between ">
                 <span className="">
-                  New Member?{" "}
+                already have an account?{" "}
                   <Link to="/login" className="ml-3 text-gray-100 underline">
                     LogIn
                   </Link>
@@ -145,7 +145,7 @@ const SignUpForm = () => {
                 <span className="mr-[-6rem] underline">
                   <a
                     className="sm:mr-[-1.9rem] sm:ml-[-10rem] mr-[1rem] text-gray-100"
-                    href="/signup"
+                    href="#"
                   >
                     Forgot password
                   </a>

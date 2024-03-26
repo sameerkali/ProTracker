@@ -19,7 +19,7 @@ const GitHubLogin = () => {
   };
 
   return (
-    <div>
+    <div className="cursor-pointer">
       <img onClick={handleClick} className="h-14" src={github} alt="github icon" />
     </div>
   );

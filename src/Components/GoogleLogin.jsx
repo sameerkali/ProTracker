@@ -19,7 +19,7 @@ const GoogleLogin = () => {
   };
 
   return (
-    <div>
+    <div className="cursor-pointer">
       <img onClick={handleClick} src={google} alt='google icon' />
     </div>
   );
