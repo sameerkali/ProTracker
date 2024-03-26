@@ -20,13 +20,6 @@ const GoogleLogin = () => {
 
   return (
     <div>
-      {/* <button
-        type="submit"
-        className=" mt-4 sm:w-[14rem] border rounded-md p-3 border-gray-600 w-[14rem] mr-4"
-         onClick={handleClick}
-      >
-        Google
-      </button> */}
       <img onClick={handleClick} src={google} alt='google icon' />
     </div>
   );
