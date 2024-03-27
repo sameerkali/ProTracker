@@ -6,11 +6,13 @@ import LogInForm from "./Components/LogInForm";
 import Home from "./Components/Home";
 import Protected from "./Components/Protected";
 import NotFound from "./Components/NotFound";
+import AddTodo from "./Components/AddTodo";
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/add" element={<AddTodo />} />
       <Route path="/login" element={<LogInForm />} />
       <Route path="/signup" element={<SignUpForm />} />
       
