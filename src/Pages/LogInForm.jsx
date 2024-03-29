@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import GoogleLogin from "./GoogleLogin";
+import GoogleLogin from "../Components/GoogleLogin";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
-import GitHubLogin from "./GitHubLogin";
+import GitHubLogin from "../Components/GitHubLogin";
 import { grid, gridMobile } from "../assets";
 
 const LogInForm = () => {

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import GoogleLogin from "./GoogleLogin";
-import GitHubLogin from "./GitHubLogin";
+import GoogleLogin from "../Components/GoogleLogin";
+import GitHubLogin from "../Components/GitHubLogin";
 import { grid, gridMobile } from "../assets";
 
 const SignUpForm = () => {

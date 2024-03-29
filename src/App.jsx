@@ -1,24 +1,57 @@
-import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
-import React from "react";
-import Hero from "./Components/Hero";
-import SignUpForm from "./Components/SignUpForm";
-import LogInForm from "./Components/LogInForm";
-import Home from "./Components/Home";
-import Protected from "./Components/Protected";
-import NotFound from "./Components/NotFound";
-import AddTodo from "./Components/AddTodo";
 
-function App() {
+import React, { useState, useEffect } from "react";
+import { Route, Routes, Navigate } from "react-router-dom";
+import Home from "./Pages/Home";
+import NotFound from "./Pages/NotFound";
+import AddTodo from "./Components/AddTodo";
+import LogInForm from "./Pages/LogInForm";
+import SignUpForm from "./Pages/SignUpForm";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import ProfileCode from "./Pages/ProfileCode";
+
+const auth = getAuth();
+
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+      } else {
+        localStorage.removeItem("user");
+      }
+    });
+
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex h-screen justify-center items-center">
+      <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
+
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/add" element={<AddTodo />} />
+      <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+      <Route path="/add" element={user ? <AddTodo /> : <Navigate to="/login" />} />
+      <Route path="/profile" element={user ? <ProfileCode /> : <Navigate to="/login" />} />
       <Route path="/login" element={<LogInForm />} />
       <Route path="/signup" element={<SignUpForm />} />
-      
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
-}
+};
 
 export default App;
