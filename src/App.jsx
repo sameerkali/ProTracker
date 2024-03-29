@@ -1,36 +1,48 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./Components/Home";
-import Protected from "./Components/Protected";
 import NotFound from "./Components/NotFound";
 import AddTodo from "./Components/AddTodo";
 import LogInForm from "./Components/LogInForm";
 import SignUpForm from "./Components/SignUpForm";
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Profile from "./Components/profile";
 
 const auth = getAuth();
 
-const isLoggedIn = () => {
-  return auth.currentUser !== null;
-};
+const App = () => {
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-const ProtectedRoute = ({ children }) => {
-  const isUserLoggedIn = isLoggedIn();
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+      if (user) {
+        localStorage.setItem("user", JSON.stringify(user));
+      } else {
+        localStorage.removeItem("user");
+      }
+    });
 
-  if (!isUserLoggedIn) {
-    return <Navigate to="/login" />;
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
   }
 
-  return children;
-};
-const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>} />
-      <Route path="/add" element={<ProtectedRoute><AddTodo /></ProtectedRoute>} />
-      <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+      <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+      <Route path="/add" element={user ? <AddTodo /> : <Navigate to="/login" />} />
+      <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
       <Route path="/login" element={<LogInForm />} />
       <Route path="/signup" element={<SignUpForm />} />
       <Route path="*" element={<NotFound />} />
