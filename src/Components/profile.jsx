@@ -22,7 +22,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex items-center flex-col">
+    <div className="flex  items-center flex-col">
       <div className="flex justify-center items-center gap-4">
         {user && user.photoURL ? (
           <img className="rounded-full h-14" src={user.photoURL} alt="User" />

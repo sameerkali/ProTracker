@@ -1,13 +1,13 @@
 
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Home from "./Components/Home";
-import NotFound from "./Components/NotFound";
+import Home from "./Pages/Home";
+import NotFound from "./Pages/NotFound";
 import AddTodo from "./Components/AddTodo";
-import LogInForm from "./Components/LogInForm";
-import SignUpForm from "./Components/SignUpForm";
+import LogInForm from "./Pages/LogInForm";
+import SignUpForm from "./Pages/SignUpForm";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Profile from "./Components/profile";
+import ProfileCode from "./Pages/ProfileCode";
 
 const auth = getAuth();
 
@@ -35,14 +35,18 @@ const App = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex h-screen justify-center items-center">
+      <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
   }
 
   return (
     <Routes>
       <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
       <Route path="/add" element={user ? <AddTodo /> : <Navigate to="/login" />} />
-      <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+      <Route path="/profile" element={user ? <ProfileCode /> : <Navigate to="/login" />} />
       <Route path="/login" element={<LogInForm />} />
       <Route path="/signup" element={<SignUpForm />} />
       <Route path="*" element={<NotFound />} />
