@@ -17,6 +17,10 @@ const auth = getAuth();
 const Home = () => {
   const nameRef = useRef(null);
   const descriptionRef = useRef(null);
+  const [inputValue, setInputValue] = useState("");
+  const [editIndex, setEditIndex] = useState(null);
+  const [editValue, setEditValue] = useState("");
+  const [editDescription, setEditDescription] = useState("");
 
   const handleResize = ref => {
     const textarea = ref.current;
@@ -32,7 +36,10 @@ const Home = () => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "todos"), snapshot => {
-      setTodos(snapshot.docs.map(doc => ({ id: doc.id, data: doc.data() })));
+      const sortedTodos = snapshot.docs
+        .map(doc => ({ id: doc.id, data: doc.data() }))
+        .sort((a, b) => b.data.date - a.data.date); // Sort by date in descending order
+      setTodos(sortedTodos);
     });
 
     return () => unsubscribe();
@@ -49,7 +56,7 @@ const Home = () => {
         description,
         isCompleted: false,
         priority: ["low", "medium", "high"],
-        label: "", // Assuming label is a string, you can assign it here
+        label: "",
         date: currentDate,
         userUID: user.uid
       });
@@ -60,6 +67,9 @@ const Home = () => {
 
   const handleEditTodo = async (id, newData) => {
     await updateDoc(doc(db, "todos", id), newData);
+    setEditIndex(null);
+    setEditValue("");
+    setEditDescription("");
   };
 
   const handleDeleteTodo = async id => {
@@ -98,66 +108,101 @@ const Home = () => {
       </div>
     );
   }
+  // console.log("user in home page:", user.uid);
 
-  console.log("user in home page:", user.uid);
   // user logic
 
   return (
     <div className="">
-    <div className="mt-10"></div>
+      <div className="mt-8" />
       <Profile />
       <div className="flex justify-center">
         <ul className="w-[20rem] sm:w-[50rem]">
-          {todos.map((todo, index) =>
-            <div key={todo.id}>
-              {todo.data.userUID === user.uid &&
-                <li className="flex items-center justify-between border-b border-gray-700 py-2">
-                  <div className="flex gap-10 items-center ">
-                    <input
-                      type="checkbox"
-                      value={todo.data.isCompleted}
-                      checked={todo.data.isCompleted}
-                      onChange={() =>
-                        handleCheckboxChange(todo.id, todo.data.isCompleted)}
-                      className="checkbox checkbox-success theme-controller"
-                    />
-                    <div className="">
-                      <div
-                        className={
-                          "text-[15px] " +
-                          (todo.data.isCompleted ? "text-[#00A96D]" : "")
-                        }
-                      >
-                        {todo.data.name}
-                      </div>
-                      <div
-                        className={
-                          "text-[12px] " +
-                          (todo.data.isCompleted ? "text-[#00A96D]" : "")
-                        }
-                      >
-                        {todo.data.description}
-                      </div>
+          {/* make all the data inside this div scroallable */}
+          <div
+            className="w-[20rem] sm:w-[50rem] h-[20rem] overflow-y-auto"
+            style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
+          >
+            {todos.map((todo, index) =>
+              <div key={todo.id}>
+                {todo.data.userUID === user.uid &&
+                  <li className="flex items-center justify-between border-b border-gray-700 py-2">
+                    {editIndex === index
+                      ? <div className="flex items-center">
+                          <input
+                            type="text"
+                            value={editValue}
+                            onChange={e => setEditValue(e.target.value)}
+                            className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md"
+                          />
+                          <input
+                            type="text"
+                            value={editDescription}
+                            onChange={e => setEditDescription(e.target.value)}
+                            className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md"
+                          />
+                          <button
+                            onClick={() =>
+                              handleEditTodo(todo.id, {
+                                name: editValue,
+                                description: editDescription
+                              })}
+                            className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
+                          >
+                            Update
+                          </button>
+                        </div>
+                      : <div className="flex gap-7">
+                          <input
+                            type="checkbox"
+                            value={todo.data.isCompleted}
+                            checked={todo.data.isCompleted}
+                            onChange={() =>
+                              handleCheckboxChange(
+                                todo.id,
+                                todo.data.isCompleted
+                              )}
+                            className="checkbox checkbox-success theme-controller"
+                          />
+                          <div className="">
+                            <div
+                              className={`text-[15px] ${todo.data.isCompleted
+                                ? "text-green-500"
+                                : ""}`}
+                            >
+                              {todo.data.name}
+                            </div>
+                            <div
+                              className={`text-[12px] ${todo.data.isCompleted
+                                ? "text-green-500"
+                                : ""}`}
+                            >
+                              {todo.data.description}
+                            </div>
+                          </div>
+                        </div>}
+
+                    <div className="flex">
+                      <CiEdit
+                        onClick={() => {
+                          setEditIndex(index);
+                          setEditValue(todo.data.name);
+                          setEditDescription(todo.data.description);
+                        }}
+                        className="text-gray-400 cursor-pointer mx-1 hover:text-green-400 text-xl"
+                      />
+                      <AiOutlineDelete
+                        onClick={() => handleDeleteTodo(todo.id)}
+                        className="text-gray-400 cursor-pointer mx-3 hover:text-red-300 text-xl"
+                      />
                     </div>
-                  </div>
-                  <div className="flex">
-                    <CiEdit
-                      onClick={() => {
-                        // Implement edit functionality
-                      }}
-                      className="text-gray-400 cursor-pointer mx-1 hover:text-green-400 text-xl"
-                    />
-                    <AiOutlineDelete
-                      onClick={() => handleDeleteTodo(todo.id)}
-                      className="text-gray-400 cursor-pointer mx-3 hover:text-red-300 text-xl"
-                    />
-                  </div>
-                </li>}
-            </div>
-          )}
+                  </li>}
+              </div>
+            )}
+          </div>
         </ul>
       </div>
-      <div className="my-10 flex items-center justify-center">
+      <div className="my-7 flex items-center justify-center">
         <div className=" w-[20rem] sm:w-[53rem] border border-gray-300 rounded-lg flex flex-col ">
           <div className="flex flex-col px-4 pt-4">
             <textarea
