@@ -120,7 +120,7 @@ const Home = () => {
         <ul className="w-[20rem] sm:w-[50rem]">
           {/* make all the data inside this div scroallable */}
           <div
-            className="w-[20rem] sm:w-[50rem] h-[20rem] overflow-y-auto"
+            className="w-[20rem] sm:w-[50rem] h-[28rem] sm:h-[20rem] overflow-y-auto"
             style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
           >
             {todos.map((todo, index) =>
