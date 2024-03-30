@@ -104,6 +104,7 @@ const Home = () => {
 
   return (
     <div className="">
+    <div className="mt-10"></div>
       <Profile />
       <div className="flex justify-center">
         <ul className="w-[20rem] sm:w-[50rem]">
