@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
 import { LuPanelLeftClose } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 import { CiEdit } from "react-icons/ci";
 import { db } from "../firebase";
@@ -15,10 +16,10 @@ import {
 import Profile from "../Components/profile";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { drawr, five, four, one, six, three, two } from "../assets";
-import Logout from '../Components/Logout'
+import Logout from "../Components/Logout";
 const auth = getAuth();
 
-const Drawr = () => {
+const Home = () => {
   const nameRef = useRef(null);
   const descriptionRef = useRef(null);
   const [inputValue, setInputValue] = useState("");
@@ -141,24 +142,61 @@ const Drawr = () => {
             <li>
               <div className="flex justify-end">
                 <button onClick={() => setSidebarOpen(!sidebarOpen)}>
-                   <img src={drawr}/>
+                  <img src={drawr} />
                 </button>
               </div>
             </li>
             <li className="flex justify-start">
-              <Profile/>
+              <Profile />
             </li>
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-              {/* one */}
-              <img className="h-5" src={one} />
-                <span className="flex-1 ms-3 whitespace-nowrap">Kanban</span>
-                <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
-                  Pro
+            <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <Link to={`comingsoon`}>
+                {/* two */}
+                <div className="flex ">
+                  <img className="h-5" src={one} />
+                  <div className="flex">
+                    <span className="flex-1 ms-3 whitespace-nowrap">Your Progress</span>
+                  </div>
+                  <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
+                  🔥
                 </span>
+                </div>
+              </Link>
+            </li>
+            <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <Link to={`comingsoon`}>
+                {/* two */}
+                <div className="flex ">
+                  <img className="h-5" src={two} />
+                  <div className="flex">
+                    <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
+                    <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+                      69
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </li>
+            <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <Link to={`comingsoon`}>
+                {/* two */}
+                <div className="flex ">
+                  <img className="h-5" src={three} />
+                  <div className="flex">
+                    <span className="flex-1 ms-3 whitespace-nowrap">Users</span>
+                  </div>
+                </div>
+              </Link>
+            </li>
+            <li>
+              <a
+                href="https://github.com/sameerkali/ProTracker"
+                target="_blank"
+                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+              >
+                {/* four */}
+                <img className="h-5" src={four} />
+                <span className="flex-1 ms-3 whitespace-nowrap">GiHhub</span>
               </a>
             </li>
             <li>
@@ -166,53 +204,10 @@ const Drawr = () => {
                 href="#"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-              {/* two */}
-              <img className="h-5" src={two} />
-                <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
-                  3
-                </span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-              {/* three */}
-              <img className="h-5" src={three} />
-                <span className="flex-1 ms-3 whitespace-nowrap">Users</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-              {/* four */}
-              <img className="h-5" src={four} />
-                <span className="flex-1 ms-3 whitespace-nowrap">Products</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-              {/* five */}
-              <img className="h-5 " src={five} />
-              <div className="ml-2"></div>
-              <Logout/>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-              {/* six */}
-                <img className="h-5" src={six} />
-                <span className="flex-1 ms-3 whitespace-nowrap">Sign Up</span>
+                {/* five */}
+                <img className="h-5 " src={five} />
+                <div className="ml-2" />
+                <Logout />
               </a>
             </li>
           </ul>
@@ -260,256 +255,269 @@ const Drawr = () => {
               Turn new navigation off
             </a>
           </div>
+          <h1 className="text-yellow-600 mt-10">
+            This app is totally Open Source if you are a developer feel free to
+            contribute{" "}
+          </h1>
+          <h1 className="text-[7px] text-green-600">Current contributer 1</h1>
         </div>
       </aside>
       <div className="pr-4 pl-4 pb-4  sm:ml-64">
-      {/* paste your content herer */}
-      <div className="">
-      <div className="mt-8" />
-      <div className="flex flex-col mb-3">
-      <h1 className="text-5xl flex justify-center">ProTracker</h1>
-      <h1 className="text-[7px] flex justify-center tracking-[2px]">Domainte your goals today, With protracker</h1>
-      </div>
-      <div className="flex justify-center">
-        <ul className="w-[20rem] sm:w-[50rem]">
-          <div
-            className="w-[20rem] sm:w-[50rem] h-[28rem] sm:h-[20rem] overflow-y-auto"
-            style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
-          >
-            {todos.map((todo, index) =>
-              <div key={todo.id}>
-                {todo.data.userUID === user.uid &&
-                  <li className="flex items-center justify-between border-b border-gray-700 py-2">
-                    {editIndex === index
-                      ? <div className="sm:flex-row flex-col items-center ">
-                          <input
-                            type="text"
-                            value={editValue}
-                            onChange={e => setEditValue(e.target.value)}
-                            className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md mt-3 sm:mt-0"
-                          />
-                          <input
-                            type="text"
-                            value={editDescription}
-                            onChange={e => setEditDescription(e.target.value)}
-                            className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md mt-3 sm:mt-0"
-                          />
-                          <button
-                            onClick={() =>
-                              handleEditTodo(todo.id, {
-                                name: editValue,
-                                description: editDescription
-                              })}
-                            className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white mt-3 sm:mt-0"
-                          >
-                            Update
-                          </button>
-                        </div>
-                      : <div className="flex flex-col gap-2">
-                          {/* label & priority */}
-                          <div className="flex text-[10px]  gap-8">
-                            <p className="text-yellow-400">
-                              {todo.data.priority}
-                            </p>
-                            <p className="text-purple-600">
-                              {todo.data.label}
-                            </p>
-                          </div>
-                          {/* label & priority */}
-                          <div className="flex  gap-7">
-                            <input
-                              type="checkbox"
-                              value={todo.data.isCompleted}
-                              checked={todo.data.isCompleted}
-                              onChange={() =>
-                                handleCheckboxChange(
-                                  todo.id,
-                                  todo.data.isCompleted
-                                )}
-                              className="checkbox checkbox-success theme-controller"
-                            />
-                            <div className="">
-                              <div
-                                className={`text-[15px] ${todo.data.isCompleted
-                                  ? "text-green-500"
-                                  : ""}`}
+        {/* paste your content herer */}
+        <div className="">
+          <div className="mt-8" />
+          <div className="flex flex-col mb-3">
+            <h1 className="text-5xl flex justify-center">ProTracker</h1>
+            <h1 className="text-[7px] flex justify-center tracking-[2px]">
+              Domainte your goals today, With protracker
+            </h1>
+          </div>
+          <div className="flex justify-center">
+            <ul className="w-[20rem] sm:w-[50rem]">
+              <div
+                className="w-[20rem] sm:w-[50rem] h-[28rem] sm:h-[20rem] overflow-y-auto"
+                style={{
+                  scrollbarWidth: "none",
+                  WebkitOverflowScrolling: "touch"
+                }}
+              >
+                {todos.map((todo, index) =>
+                  <div key={todo.id}>
+                    {todo.data.userUID === user.uid &&
+                      <li className="flex items-center justify-between border-b border-gray-700 py-2">
+                        {editIndex === index
+                          ? <div className="sm:flex-row flex-col items-center ">
+                              <input
+                                type="text"
+                                value={editValue}
+                                onChange={e => setEditValue(e.target.value)}
+                                className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md mt-3 sm:mt-0"
+                              />
+                              <input
+                                type="text"
+                                value={editDescription}
+                                onChange={e =>
+                                  setEditDescription(e.target.value)}
+                                className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md mt-3 sm:mt-0"
+                              />
+                              <button
+                                onClick={() =>
+                                  handleEditTodo(todo.id, {
+                                    name: editValue,
+                                    description: editDescription
+                                  })}
+                                className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white mt-3 sm:mt-0"
                               >
-                                {todo.data.name}
-                              </div>
-                              <div
-                                className={`text-[12px] ${todo.data.isCompleted
-                                  ? "text-green-500"
-                                  : ""}`}
-                              >
-                                {todo.data.description}
-                              </div>
+                                Update
+                              </button>
                             </div>
-                          </div>
-                        </div>}
+                          : <div className="flex flex-col gap-2">
+                              {/* label & priority */}
+                              <div className="flex text-[10px]  gap-8">
+                                <p className="text-yellow-400">
+                                  {todo.data.priority}
+                                </p>
+                                <p className="text-purple-600">
+                                  {todo.data.label}
+                                </p>
+                              </div>
+                              {/* label & priority */}
+                              <div className="flex  gap-7">
+                                <input
+                                  type="checkbox"
+                                  value={todo.data.isCompleted}
+                                  checked={todo.data.isCompleted}
+                                  onChange={() =>
+                                    handleCheckboxChange(
+                                      todo.id,
+                                      todo.data.isCompleted
+                                    )}
+                                  className="checkbox checkbox-success theme-controller"
+                                />
+                                <div className="">
+                                  <div
+                                    className={`text-[15px] ${todo.data
+                                      .isCompleted
+                                      ? "text-green-500"
+                                      : ""}`}
+                                  >
+                                    {todo.data.name}
+                                  </div>
+                                  <div
+                                    className={`text-[12px] ${todo.data
+                                      .isCompleted
+                                      ? "text-green-500"
+                                      : ""}`}
+                                  >
+                                    {todo.data.description}
+                                  </div>
+                                </div>
+                              </div>
+                            </div>}
 
-                    <div className="flex">
-                      <CiEdit
-                        onClick={() => {
-                          setEditIndex(index);
-                          setEditValue(todo.data.name);
-                          setEditDescription(todo.data.description);
-                        }}
-                        className="text-gray-400 cursor-pointer mx-1 hover:text-green-400 text-xl"
-                      />
-                      <AiOutlineDelete
-                        onClick={() => handleDeleteTodo(todo.id)}
-                        className="text-gray-400 cursor-pointer mx-3 hover:text-red-300 text-xl"
-                      />
-                    </div>
-                  </li>}
+                        <div className="flex">
+                          <CiEdit
+                            onClick={() => {
+                              setEditIndex(index);
+                              setEditValue(todo.data.name);
+                              setEditDescription(todo.data.description);
+                            }}
+                            className="text-gray-400 cursor-pointer mx-1 hover:text-green-400 text-xl"
+                          />
+                          <AiOutlineDelete
+                            onClick={() => handleDeleteTodo(todo.id)}
+                            className="text-gray-400 cursor-pointer mx-3 hover:text-red-300 text-xl"
+                          />
+                        </div>
+                      </li>}
+                  </div>
+                )}
               </div>
-            )}
+            </ul>
           </div>
-        </ul>
-      </div>
-      <div className="my-4 flex items-center justify-center">
-        <div className=" w-[20rem] sm:w-[53rem] border border-gray-300 rounded-lg flex flex-col ">
-          <div className="flex flex-col px-4 pt-4">
-            <textarea
-              ref={nameRef}
-              className="bg-transparent text-14 font-bold outline-none overflow-hidden resize-none w-full"
-              placeholder="Task name"
-              onInput={() => handleResize(descriptionRef)}
-            />
-            <textarea
-              ref={descriptionRef}
-              onInput={() => handleResize(descriptionRef)}
-              className=" bg-transparent placeholder-gray-500  text-[14px] outline-none overflow-hidden resize-none w-full mb-4"
-              placeholder="Description"
-            />
-          </div>
-          <div className="felx flex-col px-3 pb-3 text-[13px] ">
-            <button
-              type="submit"
-              className="border border-gray-300 rounded-md mx-1 px-[19px] py-[3px] hover:bg-gray-800 hover:text-white"
-            >
-              Due date
-            </button>
-            <div className="dropdown dropdown-hover">
-              <button
-                tabIndex={0}
-                role="button"
-                type="submit"
-                className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
-                onClick={() =>
-                  setIsPriorityDropdownOpen(!isPriorityDropdownOpen)}
-              >
-                Priority
-                <ul
-                  tabIndex={0}
-                  className={`dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-1 ${isPriorityDropdownOpen
-                    ? "block"
-                    : "hidden"}`}
+          <div className="my-4 flex items-center justify-center">
+            <div className=" w-[20rem] sm:w-[53rem] border border-gray-300 rounded-lg flex flex-col ">
+              <div className="flex flex-col px-4 pt-4">
+                <textarea
+                  ref={nameRef}
+                  className="bg-transparent text-14 font-bold outline-none overflow-hidden resize-none w-full"
+                  placeholder="Task name"
+                  onInput={() => handleResize(descriptionRef)}
+                />
+                <textarea
+                  ref={descriptionRef}
+                  onInput={() => handleResize(descriptionRef)}
+                  className=" bg-transparent placeholder-gray-500  text-[14px] outline-none overflow-hidden resize-none w-full mb-4"
+                  placeholder="Description"
+                />
+              </div>
+              <div className="felx flex-col px-3 pb-3 text-[13px] ">
+                <button
+                  type="submit"
+                  className="border border-gray-300 rounded-md mx-1 px-[19px] py-[3px] hover:bg-gray-800 hover:text-white"
                 >
-                  <li>
-                    <a
-                      onClick={() => {
-                        setSelectedPriority("High");
-                        setIsPriorityDropdownOpen(false);
-                      }}
+                  Due date
+                </button>
+                <div className="dropdown dropdown-hover">
+                  <button
+                    tabIndex={0}
+                    role="button"
+                    type="submit"
+                    className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
+                    onClick={() =>
+                      setIsPriorityDropdownOpen(!isPriorityDropdownOpen)}
+                  >
+                    Priority
+                    <ul
+                      tabIndex={0}
+                      className={`dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-1 ${isPriorityDropdownOpen
+                        ? "block"
+                        : "hidden"}`}
                     >
-                      High🔥
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      onClick={() => {
-                        setSelectedPriority("Medium");
-                        setIsPriorityDropdownOpen(false);
-                      }}
+                      <li>
+                        <a
+                          onClick={() => {
+                            setSelectedPriority("High");
+                            setIsPriorityDropdownOpen(false);
+                          }}
+                        >
+                          High🔥
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          onClick={() => {
+                            setSelectedPriority("Medium");
+                            setIsPriorityDropdownOpen(false);
+                          }}
+                        >
+                          Medium🌚
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          onClick={() => {
+                            setSelectedPriority("Low");
+                            setIsPriorityDropdownOpen(false);
+                          }}
+                        >
+                          Low🥲
+                        </a>
+                      </li>
+                    </ul>
+                  </button>
+                </div>
+                <div className="dropdown dropdown-hover">
+                  <button
+                    tabIndex={0}
+                    role="button"
+                    type="submit"
+                    className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
+                    onClick={() => setIsLabelDropdownOpen(!isLabelDropdownOpen)}
+                  >
+                    Label
+                    <ul
+                      tabIndex={0}
+                      className={`dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-1 ${isLabelDropdownOpen
+                        ? "block"
+                        : "hidden"}`}
                     >
-                      Medium🌚
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      onClick={() => {
-                        setSelectedPriority("Low");
-                        setIsPriorityDropdownOpen(false);
-                      }}
-                    >
-                      Low🥲
-                    </a>
-                  </li>
-                </ul>
-              </button>
-            </div>
-            <div className="dropdown dropdown-hover">
-              <button
-                tabIndex={0}
-                role="button"
-                type="submit"
-                className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
-                onClick={() => setIsLabelDropdownOpen(!isLabelDropdownOpen)}
-              >
-                Label
-                <ul
-                  tabIndex={0}
-                  className={`dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-1 ${isLabelDropdownOpen
-                    ? "block"
-                    : "hidden"}`}
+                      <li>
+                        <a
+                          onClick={() => {
+                            setSelectedLabel("Personal");
+                            setIsLabelDropdownOpen(false);
+                          }}
+                        >
+                          Personal🦉
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          onClick={() => {
+                            setSelectedLabel("Work");
+                            setIsLabelDropdownOpen(false);
+                          }}
+                        >
+                          Work🦄
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          onClick={() => {
+                            setSelectedLabel("Study");
+                            setIsLabelDropdownOpen(false);
+                          }}
+                        >
+                          Study🦤
+                        </a>
+                      </li>
+                    </ul>
+                  </button>
+                </div>
+              </div>
+              <hr />
+              <div className="flex justify-end px-3 text-[13px] py-4">
+                <button
+                  type="submit"
+                  className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
                 >
-                  <li>
-                    <a
-                      onClick={() => {
-                        setSelectedLabel("Personal");
-                        setIsLabelDropdownOpen(false);
-                      }}
-                    >
-                      Personal🦉
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      onClick={() => {
-                        setSelectedLabel("Work");
-                        setIsLabelDropdownOpen(false);
-                      }}
-                    >
-                      Work🦄
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      onClick={() => {
-                        setSelectedLabel("Study");
-                        setIsLabelDropdownOpen(false);
-                      }}
-                    >
-                      Study🦤
-                    </a>
-                  </li>
-                </ul>
-              </button>
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
+                  onClick={handleAddTodo}
+                >
+                  Add task
+                </button>
+              </div>
             </div>
-          </div>
-          <hr />
-          <div className="flex justify-end px-3 text-[13px] py-4">
-            <button
-              type="submit"
-              className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
-              onClick={handleAddTodo}
-            >
-              Add task
-            </button>
           </div>
         </div>
       </div>
-    </div>
-    </div>
     </div>
   );
 };
 
-export default Drawr;
+export default Home;
