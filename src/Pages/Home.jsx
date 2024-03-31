@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AiOutlineDelete } from "react-icons/ai";
-import { LuPanelLeftClose } from "react-icons/lu";
+import { FaGithub } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 
 import { CiEdit } from "react-icons/ci";
@@ -15,7 +16,7 @@ import {
 } from "firebase/firestore";
 import Profile from "../Components/profile";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { drawr, five, four, one, six, three, two } from "../assets";
+import { close, drawr, five, four, one, six, three, two } from "../assets";
 import Logout from "../Components/Logout";
 const auth = getAuth();
 
@@ -155,11 +156,13 @@ const Home = () => {
                 <div className="flex ">
                   <img className="h-5" src={one} />
                   <div className="flex">
-                    <span className="flex-1 ms-3 whitespace-nowrap">Your Progress</span>
+                    <span className="flex-1 ms-3 whitespace-nowrap">
+                      Your Progress
+                    </span>
                   </div>
                   <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
-                  🔥
-                </span>
+                    🔥
+                  </span>
                 </div>
               </Link>
             </li>
@@ -195,7 +198,8 @@ const Home = () => {
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 {/* four */}
-                <img className="h-5" src={four} />
+                {/* <img className="h-5" src={four} /> */}
+                <FaGithub size={23} />
                 <span className="flex-1 ms-3 whitespace-nowrap">GiHhub</span>
               </a>
             </li>
@@ -227,32 +231,18 @@ const Home = () => {
                 aria-label="Close"
               >
                 <span className="sr-only">Close</span>
-                <svg
-                  className="w-2.5 h-2.5"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 14 14"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                  />
-                </svg>
+                <img src={close} />
               </button>
             </div>
             <p className="mb-3 text-sm text-blue-800 dark:text-blue-400">
-              Preview the new Flowbite dashboard navigation! You can turn the
-              new navigation off for a limited time in your profile.
+              The platform for handling your tasks with ProTracker to visualize
+              your performance on a daily, weekly, monthly, and yearly basis.
             </p>
             <a
               className="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
               href="#"
             >
-              Turn new navigation off
+              Know more about this app
             </a>
           </div>
           <h1 className="text-yellow-600 mt-10">

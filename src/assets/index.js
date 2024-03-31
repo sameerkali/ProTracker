@@ -12,4 +12,5 @@ import three from "./Home/three.svg";
 import four from "./Home/four.svg";
 import five from "./Home/five.svg";
 import six from "./Home/six.svg";
-export {gridCurve ,gradient, google, github, grid, gridMobile, grid3d, drawr, one, two, three, four, five, six,} ;
+import close from "./Home/close.svg";
+export {gridCurve ,gradient, google, github, grid, gridMobile, grid3d, drawr, one, two, three, four, five, six, close} ;
