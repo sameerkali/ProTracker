@@ -8,6 +8,7 @@ import LogInForm from "./Pages/LogInForm";
 import SignUpForm from "./Pages/SignUpForm";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import ProfileCode from "./Pages/ProfileCode";
+import Drawr from "./Components/Drawr";
 
 const auth = getAuth();
 
@@ -50,6 +51,7 @@ const App = () => {
       <Route path="/login" element={<LogInForm />} />
       <Route path="/signup" element={<SignUpForm />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/drawr" element={<Drawr />} />
     </Routes>
   );
 };

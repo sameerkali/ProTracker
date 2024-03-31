@@ -22,29 +22,18 @@ const Profile = () => {
   };
 
   return (
-    <div className="flex  items-center flex-col">
+    <div className="flex  items-center flex-col ">
       <div className="flex justify-center items-center gap-4">
         {user && user.photoURL ? (
-          <img className="rounded-full h-14" src={user.photoURL} alt="User" />
+          <img className="rounded-full h-10" src={user.photoURL} alt="User" />
         ) : (
           <img className="rounded-full h-10 w-10" src={gradient} alt="User" />
         )}
         <div>
           <p>{user ? user.displayName : "no name"}</p>
-          <p>{user ? user.email : "no email"}</p>
+          <p className="text-[8px]">{user ? user.email : "no email"}</p>
         </div>
       </div>
-
-      {token ? (
-        <button
-          className="bg-gray-800 text-white px-3 py-1 rounded-md mt-4 hover:bg-gray-700"
-          onClick={handleLogout}
-        >
-          LogOut
-        </button>
-      ) : (
-        <GoogleLogin />
-      )}
     </div>
   );
 };
