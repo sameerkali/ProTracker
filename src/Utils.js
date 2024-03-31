@@ -5,23 +5,23 @@ export const contributors = [
       link: 'https://github.com/sameerkali'
     },
     {
-      name: 'demoUser1',
+      name: 'sameerkali',
       image: 'https://avatars.githubusercontent.com/u/76611058?v=4',
-      link: 'https://github.com/demoUser1'
+      link: 'https://github.com/sameerkali'      
     },
     {
-      name: 'demoUser2',
+      name: 'sameerkali',
       image: 'https://avatars.githubusercontent.com/u/76611058?v=4',
-      link: 'https://github.com/demoUser2'
+      link: 'https://github.com/sameerkali'
     },
     {
-      name: 'demoUser3',
+      name: 'sameerkali',
       image: 'https://avatars.githubusercontent.com/u/76611058?v=4',
-      link: 'https://github.com/demoUser3'
+      link: 'https://github.com/sameerkali'
     },
     {
-      name: 'demoUser4',
+      name: 'sameerkali',
       image: 'https://avatars.githubusercontent.com/u/76611058?v=4',
-      link: 'https://github.com/demoUser4'
+      link: 'https://github.com/sameerkali'
     }
   ];

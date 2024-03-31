@@ -1,39 +1,52 @@
 import React from "react";
-import { contributors } from "../Utils";
 import { Link } from "react-router-dom";
+import { contributors } from "../Utils";
 
 const Contributers = () => {
   return (
-    <div className=" mt-20 px-[20rem]">
-      <div className="flex">
-        <Link to="/">
-          <p className="underline">Home</p>
-        </Link>
+    <div className="h-screen border border-black m-0 flex justify-center items-center overflow-x-auto flex-col">
+      <div className="flex my-10">
+      <Link to="/">
+
+        <p className="underline">home</p>
+      </Link>
         <p>/</p>
-        <p>Contributers</p>
+        <p className="text-gray-400">contributers</p>
       </div>
-      <div className="">
-        {contributors.map((contributor, index) =>
-          <a
-            key={index}
-            href={contributor.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
-          >
-            <img
-              className="object-cover rounded-full h-24 md:h-40 md:w-48 md:rounded-none md:rounded-t-lg"
-              src={contributor.image}
-              alt={contributor.name}
-            />
-            <div className="flex flex-col justify-between p-4 leading-normal">
-              <h5 className="mb-2 text-lg font-bold tracking-tight text-gray-900 dark:text-white">
+      <table className="border-collapse">
+        <thead>
+          <tr className="bg-gray-800">
+            <th className="border border-black px-4 py-2">Image</th>
+            <th className="border border-black px-4 py-2">Name</th>
+            <th className="border border-black px-4 py-2">GitHub</th>
+          </tr>
+        </thead>
+        <tbody>
+          {contributors.map((contributor, index) =>
+            <tr className="bg-gray-700" key={index}>
+              <td className="border border-black px-4 py-2">
+                <img
+                  src={contributor.image}
+                  alt={contributor.name}
+                  className="h-10 w-10 rounded-full"
+                />
+              </td>
+              <td className="border border-black px-4 py-2">
                 {contributor.name}
-              </h5>
-            </div>
-          </a>
-        )}
-      </div>
+              </td>
+              <td className="border border-black px-4 py-2">
+                <a
+                  href={contributor.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Link
+                </a>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
     </div>
   );
 };
