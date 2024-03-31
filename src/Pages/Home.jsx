@@ -255,7 +255,6 @@ const Home = () => {
         </div>
       </aside>
       <div className="pr-4 pl-4 pb-4  sm:ml-64">
-        {/* paste your content herer */}
         <div className="">
           <div className="mt-8" />
           <div className="flex flex-col mb-3">
