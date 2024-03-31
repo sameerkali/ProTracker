@@ -10,6 +10,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import ProfileCode from "./Pages/ProfileCode";
 import Drawr from "./Components/Drawr";
 import ComingSoon from "./Pages/ComingSoon";
+import Contributers from "./Components/Contributers";
 
 const auth = getAuth();
 
@@ -50,6 +51,7 @@ const App = () => {
       <Route path="/add" element={user ? <AddTodo /> : <Navigate to="/login" />} />
       <Route path="/profile" element={user ? <ProfileCode /> : <Navigate to="/login" />} />
       <Route path="/comingsoon" element={user ? <ComingSoon />: <Navigate to="/login" />} />
+      <Route path="/contributers" element={user ? <Contributers />: <Navigate to="/login" />} />
       <Route path="/login" element={<LogInForm />} />
       <Route path="/signup" element={<SignUpForm />} />
       <Route path="*" element={<NotFound />} />
