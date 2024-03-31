@@ -117,7 +117,6 @@ const Home = () => {
       <Profile />
       <div className="flex justify-center">
         <ul className="w-[20rem] sm:w-[50rem]">
-          {/* make all the data inside this div scroallable */}
           <div
             className="w-[20rem] sm:w-[50rem] h-[28rem] sm:h-[20rem] overflow-y-auto"
             style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}
@@ -151,32 +150,44 @@ const Home = () => {
                             Update
                           </button>
                         </div>
-                      : <div className="flex gap-7">
-                          <input
-                            type="checkbox"
-                            value={todo.data.isCompleted}
-                            checked={todo.data.isCompleted}
-                            onChange={() =>
-                              handleCheckboxChange(
-                                todo.id,
-                                todo.data.isCompleted
-                              )}
-                            className="checkbox checkbox-success theme-controller"
-                          />
-                          <div className="">
-                            <div
-                              className={`text-[15px] ${todo.data.isCompleted
-                                ? "text-green-500"
-                                : ""}`}
-                            >
-                              {todo.data.name}
-                            </div>
-                            <div
-                              className={`text-[12px] ${todo.data.isCompleted
-                                ? "text-green-500"
-                                : ""}`}
-                            >
-                              {todo.data.description}
+                      : <div className="flex flex-col gap-2">
+                          {/* label & priority */}
+                          <div className="flex text-[10px]  gap-8">
+                            <p className="text-yellow-400">
+                              {todo.data.priority}
+                            </p>
+                            <p className="text-purple-600">
+                              {todo.data.label}
+                            </p>
+                          </div>
+                          {/* label & priority */}
+                          <div className="flex  gap-7">
+                            <input
+                              type="checkbox"
+                              value={todo.data.isCompleted}
+                              checked={todo.data.isCompleted}
+                              onChange={() =>
+                                handleCheckboxChange(
+                                  todo.id,
+                                  todo.data.isCompleted
+                                )}
+                              className="checkbox checkbox-success theme-controller"
+                            />
+                            <div className="">
+                              <div
+                                className={`text-[15px] ${todo.data.isCompleted
+                                  ? "text-green-500"
+                                  : ""}`}
+                              >
+                                {todo.data.name}
+                              </div>
+                              <div
+                                className={`text-[12px] ${todo.data.isCompleted
+                                  ? "text-green-500"
+                                  : ""}`}
+                              >
+                                {todo.data.description}
+                              </div>
                             </div>
                           </div>
                         </div>}
@@ -201,7 +212,7 @@ const Home = () => {
           </div>
         </ul>
       </div>
-      <div className="my-7 flex items-center justify-center">
+      <div className="my-4 flex items-center justify-center">
         <div className=" w-[20rem] sm:w-[53rem] border border-gray-300 rounded-lg flex flex-col ">
           <div className="flex flex-col px-4 pt-4">
             <textarea
