@@ -21,6 +21,9 @@ const Home = () => {
   const [editIndex, setEditIndex] = useState(null);
   const [editValue, setEditValue] = useState("");
   const [editDescription, setEditDescription] = useState("");
+  const [selectedPriority, setSelectedPriority] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
 
   const handleResize = ref => {
     const textarea = ref.current;
@@ -55,7 +58,7 @@ const Home = () => {
         name: name.trim(),
         description,
         isCompleted: false,
-        priority: ["low", "medium", "high"],
+        priority: selectedPriority || "low",
         label: "",
         date: currentDate,
         userUID: user.uid
@@ -128,18 +131,18 @@ const Home = () => {
                 {todo.data.userUID === user.uid &&
                   <li className="flex items-center justify-between border-b border-gray-700 py-2">
                     {editIndex === index
-                      ? <div className="flex items-center">
+                      ? <div className="sm:flex-row flex-col items-center ">
                           <input
                             type="text"
                             value={editValue}
                             onChange={e => setEditValue(e.target.value)}
-                            className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md"
+                            className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md mt-3 sm:mt-0"
                           />
                           <input
                             type="text"
                             value={editDescription}
                             onChange={e => setEditDescription(e.target.value)}
-                            className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md"
+                            className="border border-transparent bg-[#6d6d6d2a] px-2 py-1 focus:outline-none mr-2 rounded-md mt-3 sm:mt-0"
                           />
                           <button
                             onClick={() =>
@@ -147,7 +150,7 @@ const Home = () => {
                                 name: editValue,
                                 description: editDescription
                               })}
-                            className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
+                            className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white mt-3 sm:mt-0"
                           >
                             Update
                           </button>
@@ -225,12 +228,53 @@ const Home = () => {
             >
               Due date
             </button>
-            <button
-              type="submit"
-              className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
-            >
-              Priority
-            </button>
+            <div className="dropdown dropdown-hover">
+              <button
+                tabIndex={0}
+                role="button"
+                type="submit"
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
+              > Priority
+                <ul
+                  tabIndex={0}
+                  className={`dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-1 ${
+                    isDropdownOpen ? "block" : "hidden"
+                  }`}
+                >
+                   <li>
+                    <a
+                      onClick={() => {
+                        setSelectedPriority("high");
+                        setIsDropdownOpen(false);
+                      }}
+                    >
+                      High🔥
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        setSelectedPriority("medium");
+                        setIsDropdownOpen(false);
+                      }}
+                    >
+                      Medium🌚
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        setSelectedPriority("low");
+                        setIsDropdownOpen(false);
+                      }}
+                    >
+                      Low🥲
+                    </a>
+                  </li>
+                </ul>
+              </button>
+            </div>
             <button
               type="submit"
               className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
