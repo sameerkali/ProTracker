@@ -249,7 +249,9 @@ const Home = () => {
             This app is totally Open Source if you are a developer feel free to
             contribute{" "}
           </h1>
-          <h1 className="text-[7px] text-green-600">Current contributer 1</h1>
+          <Link to="/contributers">
+          <h1 className="underline text-green-600">Contributers</h1>
+          </Link>
         </div>
       </aside>
       <div className="pr-4 pl-4 pb-4  sm:ml-64">
