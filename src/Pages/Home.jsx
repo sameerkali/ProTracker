@@ -22,8 +22,9 @@ const Home = () => {
   const [editValue, setEditValue] = useState("");
   const [editDescription, setEditDescription] = useState("");
   const [selectedPriority, setSelectedPriority] = useState("");
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
+  const [selectedLabel, setSelectedLabel] = useState("");
+  const [isPriorityDropdownOpen, setIsPriorityDropdownOpen] = useState(false);
+  const [isLabelDropdownOpen, setIsLabelDropdownOpen] = useState(false);
 
   const handleResize = ref => {
     const textarea = ref.current;
@@ -32,10 +33,6 @@ const Home = () => {
   };
 
   const [todos, setTodos] = useState([]);
-  // console.log("todos", todos[0]?.data?.userUID)
-  // todos.map((t) => {
-  //   console.log("map all id's",t?.data?.userUID)
-  // })
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "todos"), snapshot => {
@@ -59,12 +56,14 @@ const Home = () => {
         description,
         isCompleted: false,
         priority: selectedPriority || "low",
-        label: "",
+        label: selectedLabel || "",
         date: currentDate,
         userUID: user.uid
       });
       nameRef.current.value = "";
       descriptionRef.current.value = "";
+      setSelectedPriority("");
+      setSelectedLabel("");
     }
   };
 
@@ -111,9 +110,6 @@ const Home = () => {
       </div>
     );
   }
-  // console.log("user in home page:", user.uid);
-
-  // user logic
 
   return (
     <div className="">
@@ -233,20 +229,22 @@ const Home = () => {
                 tabIndex={0}
                 role="button"
                 type="submit"
-                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                 className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
-              > Priority
+                onClick={() =>
+                  setIsPriorityDropdownOpen(!isPriorityDropdownOpen)}
+              >
+                Priority
                 <ul
                   tabIndex={0}
-                  className={`dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-1 ${
-                    isDropdownOpen ? "block" : "hidden"
-                  }`}
+                  className={`dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-1 ${isPriorityDropdownOpen
+                    ? "block"
+                    : "hidden"}`}
                 >
-                   <li>
+                  <li>
                     <a
                       onClick={() => {
                         setSelectedPriority("high");
-                        setIsDropdownOpen(false);
+                        setIsPriorityDropdownOpen(false);
                       }}
                     >
                       High🔥
@@ -256,7 +254,7 @@ const Home = () => {
                     <a
                       onClick={() => {
                         setSelectedPriority("medium");
-                        setIsDropdownOpen(false);
+                        setIsPriorityDropdownOpen(false);
                       }}
                     >
                       Medium🌚
@@ -266,7 +264,7 @@ const Home = () => {
                     <a
                       onClick={() => {
                         setSelectedPriority("low");
-                        setIsDropdownOpen(false);
+                        setIsPriorityDropdownOpen(false);
                       }}
                     >
                       Low🥲
@@ -275,12 +273,54 @@ const Home = () => {
                 </ul>
               </button>
             </div>
-            <button
-              type="submit"
-              className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
-            >
-              label
-            </button>
+            <div className="dropdown dropdown-hover">
+              <button
+                tabIndex={0}
+                role="button"
+                type="submit"
+                className="border border-gray-300 rounded-md px-[19px] py-[3px] mx-1 hover:bg-gray-800 hover:text-white"
+                onClick={() => setIsLabelDropdownOpen(!isLabelDropdownOpen)}
+              >
+                Label
+                <ul
+                  tabIndex={0}
+                  className={`dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 mt-1 ${isLabelDropdownOpen
+                    ? "block"
+                    : "hidden"}`}
+                >
+                  <li>
+                    <a
+                      onClick={() => {
+                        setSelectedLabel("Personal");
+                        setIsLabelDropdownOpen(false);
+                      }}
+                    >
+                      Personal
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        setSelectedLabel("Work");
+                        setIsLabelDropdownOpen(false);
+                      }}
+                    >
+                      Work
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      onClick={() => {
+                        setSelectedLabel("Study");
+                        setIsLabelDropdownOpen(false);
+                      }}
+                    >
+                      Study
+                    </a>
+                  </li>
+                </ul>
+              </button>
+            </div>
           </div>
           <hr />
           <div className="flex justify-end px-3 text-[13px] py-4">
