@@ -18,6 +18,7 @@ import Profile from "../Components/profile";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { close, drawr, five, four, one, six, three, two } from "../assets";
 import Logout from "../Components/Logout";
+import Calendar from "react-calendar";
 const auth = getAuth();
 
 const Home = () => {
@@ -31,8 +32,13 @@ const Home = () => {
   const [selectedLabel, setSelectedLabel] = useState("");
   const [isPriorityDropdownOpen, setIsPriorityDropdownOpen] = useState(false);
   const [isLabelDropdownOpen, setIsLabelDropdownOpen] = useState(false);
-  const [sidebarOpen, setSidebarOpen] = useState(false); // State for toggling sidebar
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [value, onChange] = useState(new Date());
+  const [showCalendar, setShowCalendar] = useState(false);
 
+  const toggleCalendar = () => {
+    setShowCalendar(!showCalendar);
+  };
   const handleResize = ref => {
     const textarea = ref.current;
     textarea.style.height = "auto";
@@ -55,7 +61,6 @@ const Home = () => {
   const handleAddTodo = async () => {
     const name = nameRef.current.value;
     const description = descriptionRef.current.value;
-    const currentDate = new Date();
 
     if (name.trim() !== "") {
       await addDoc(collection(db, "todos"), {
@@ -64,7 +69,7 @@ const Home = () => {
         isCompleted: false,
         priority: selectedPriority || "",
         label: selectedLabel || "",
-        date: currentDate,
+        date: value,
         userUID: user.uid
       });
       nameRef.current.value = "";
@@ -250,7 +255,7 @@ const Home = () => {
             contribute{" "}
           </h1>
           <Link to="/contributers">
-          <h1 className="underline text-green-600">Contributers</h1>
+            <h1 className="underline text-green-600">Contributers</h1>
           </Link>
         </div>
       </aside>
@@ -386,9 +391,15 @@ const Home = () => {
                 <button
                   type="submit"
                   className="border border-gray-300 rounded-md mx-1 px-[19px] py-[3px] hover:bg-gray-800 hover:text-white"
+                  onClick={toggleCalendar}
                 >
                   Due date
                 </button>
+                {showCalendar &&
+                  <div className="absolute bg-gray-800 p-3">
+                    <Calendar onChange={onChange} value={value} />
+                  </div>}
+
                 <div className="dropdown dropdown-hover">
                   <button
                     tabIndex={0}
