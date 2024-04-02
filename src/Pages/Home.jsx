@@ -244,8 +244,9 @@ const Home = () => {
               your performance on a daily, weekly, monthly, and yearly basis.
             </p>
             <a
+            target="_blank"
               className="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
-              href="#"
+              href="https://github.com/sameerkali/ProTracker"
             >
               Know more about this app
             </a>
