@@ -45,6 +45,13 @@ const Home = () => {
     textarea.style.height = `${textarea.scrollHeight}px`;
   };
 
+
+ function handleOnChangeDate(date)
+  {
+    onChange(date)
+    // console.log("date: " + date)
+    setShowCalendar(false)
+  }
   const [todos, setTodos] = useState([]);
 
   useEffect(() => {
@@ -398,7 +405,7 @@ const Home = () => {
                 </button>
                 {showCalendar &&
                   <div className="absolute bg-gray-800 p-3">
-                    <Calendar onChange={onChange} value={value} />
+                    <Calendar onChange={(date)=>handleOnChangeDate(date)} value={value} />
                   </div>}
 
                 <div className="dropdown dropdown-hover">
