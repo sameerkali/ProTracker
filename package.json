@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "echarts": "^5.5.0",
+    "echarts-for-react": "^3.0.2",
     "firebase": "^10.9.0",
     "react": "^18.2.0",
     "react-calendar": "^4.8.0",

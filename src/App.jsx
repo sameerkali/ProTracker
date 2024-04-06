@@ -11,6 +11,7 @@ import ProfileCode from "./Pages/ProfileCode";
 import Drawr from "./Components/Drawr";
 import ComingSoon from "./Pages/ComingSoon";
 import Contributers from "./Components/Contributers";
+import Globee from "./Charts/Globee";
 
 const auth = getAuth();
 
@@ -54,6 +55,7 @@ const App = () => {
       <Route path="/contributers" element={user ? <Contributers />: <Navigate to="/login" />} />
       <Route path="/login" element={<LogInForm />} />
       <Route path="/signup" element={<SignUpForm />} />
+      <Route path="/globe" element={<Globee />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
