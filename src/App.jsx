@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import Home from "./Pages/Home";
+import Home from "./Pages/Home/Home";
 import NotFound from "./Pages/NotFound";
 import AddTodo from "./Components/AddTodo";
 import LogInForm from "./Pages/LogInForm";
@@ -12,6 +12,8 @@ import Drawr from "./Components/Drawr";
 import ComingSoon from "./Pages/ComingSoon";
 import Contributers from "./Components/Contributers";
 import Globee from "./Charts/Globee";
+import ContributionGraph from "./Components/ContributionGraph";
+import ShowData from "./Pages/Data fetching group by date demo for learning/ShowData";
 
 const auth = getAuth();
 
@@ -56,7 +58,9 @@ const App = () => {
       <Route path="/login" element={<LogInForm />} />
       <Route path="/signup" element={<SignUpForm />} />
       <Route path="/globe" element={<Globee />} />
+      <Route path="/graph" element={user ? <ContributionGraph />: <Navigate to="/login" />}/>
       <Route path="*" element={<NotFound />} />
+      <Route path="/showData" element={<ShowData />} />
     </Routes>
   );
 };
