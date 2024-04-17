@@ -1,139 +1,182 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
-import { close, drawr, five, four, one, six, three, two } from "../../assets";
+import { close, drawr, five, one, three, two } from "../../assets";
 import Profile from "../../Components/profile";
 import Logout from "../../Components/Logout";
 
-const Sidebar = ({sidebarOpen, setSidebarOpen}) => {
-    // console.log(sidebarOpen)
-//   const [sidebarOpen, setSidebarOpen] = useState(false);
+const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+ 
+  //theme change logic
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+  
+  const handleToggle = e => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
+  useEffect(
+    () => {
+      localStorage.setItem("theme", theme);
+      const localTheme = localStorage.getItem("theme");
+      document.querySelector("html").setAttribute("data-theme", localTheme);
+    },
+    [theme]
+  );
+  //theme change logic
 
   return (
     <aside
-        id="cta-button-sidebar"
-        className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${sidebarOpen
-          ? ""
-          : "-translate-x-full"} sm:translate-x-0`}
-        aria-label="Sidebar"
-      >
-        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-          <ul className="space-y-2 font-medium">
-            <li>
-              <div className="flex justify-end">
-                <button onClick={() => setSidebarOpen(!sidebarOpen)}>
-                  <img src={drawr} />
-                </button>
-              </div>
-            </li>
-            <li className="flex justify-start">
-              <Profile />
-            </li>
-            <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <Link to={`comingsoon`}>
-                {/* two */}
-                <div className="flex ">
-                  <img className="h-5" src={one} />
-                  <div className="flex">
-                    <span className="flex-1 ms-3 whitespace-nowrap">
-                      Your Progress
-                    </span>
-                  </div>
-                  <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
-                    🔥
-                  </span>
-                </div>
-              </Link>
-            </li>
-            <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <Link to={`comingsoon`}>
-                {/* two */}
-                <div className="flex ">
-                  <img className="h-5" src={two} />
-                  <div className="flex">
-                    <span className="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-                    <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
-                      69
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-              <Link to={`comingsoon`}>
-                {/* two */}
-                <div className="flex ">
-                  <img className="h-5" src={three} />
-                  <div className="flex">
-                    <span className="flex-1 ms-3 whitespace-nowrap">Users</span>
-                  </div>
-                </div>
-              </Link>
-            </li>
-            <li>
-              <a
-                href="https://github.com/sameerkali/ProTracker"
-                target="_blank"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                {/* four */}
-                {/* <img className="h-5" src={four} /> */}
-                <FaGithub size={23} />
-                <span className="flex-1 ms-3 whitespace-nowrap">GiHhub</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                {/* five */}
-                <img className="h-5 " src={five} />
-                <div className="ml-2" />
-                <Logout />
-              </a>
-            </li>
-          </ul>
-          <div
-            id="dropdown-cta"
-            className="p-4 mt-6 rounded-lg bg-blue-50 dark:bg-blue-900"
-            role="alert"
+      id="cta-button-sidebar"
+      className={`fixed top-0 left-0 z-40 w-64 h-screen transition-transform ${sidebarOpen
+        ? ""
+        : "-translate-x-full"} sm:translate-x-0 `}
+      aria-label="Sidebar"
+    >
+      <div className={`h-full px-3 py-4 overflow-y-auto ${theme === "light" ? "bg-gray-50" : "bg-gray-800"}`}>
+        <label className="swap swap-rotate">
+          {/* this hidden checkbox controls the state */}
+          <input type="checkbox" onChange={handleToggle} />
+
+          {/* sun icon */}
+          <svg
+            className="swap-on fill-current w-10 h-10"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
           >
-            <div className="flex items-center mb-3">
-              <span className="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">
-                Beta
-              </span>
-              <button
-                type="button"
-                className="ms-auto -mx-1.5 -my-1.5 bg-blue-50 inline-flex justify-center items-center w-6 h-6 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 h-6 w-6 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800"
-                data-dismiss-target="#dropdown-cta"
-                aria-label="Close"
-              >
-                <span className="sr-only">Close</span>
-                <img src={close} />
+            <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+          </svg>
+
+          {/* moon icon */}
+          <svg
+            className="swap-off fill-current w-10 h-10"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+          </svg>
+        </label>
+        <ul className="space-y-2 font-medium">
+          <li>
+            <div className="flex justify-end">
+              <button onClick={() => setSidebarOpen(!sidebarOpen)}>
+                <img src={drawr} />
               </button>
             </div>
-            <p className="mb-3 text-sm text-blue-800 dark:text-blue-400">
-              The platform for handling your tasks with ProTracker to visualize
-              your performance on a daily, weekly, monthly, and yearly basis.
-            </p>
+          </li>
+          <li className="flex justify-start">
+            <Profile />
+          </li>
+          <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <Link to={`comingsoon`}>
+              {/* two */}
+
+              <div className="flex ">
+                <img className="h-5" src={one} />
+                <div className="flex">
+                  <span className={`flex-1 ms-3 whitespace-nowrap ${theme === "light" ? "text-black" : "text-white"}`}>
+                    Your Progress
+                  </span>
+                </div>
+                <span className="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
+                  🔥
+                </span>
+              </div>
+            </Link>
+          </li>
+          <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <Link to={`comingsoon`}>
+              {/* two */}
+              <div className="flex ">
+                <img className="h-5" src={two} />
+                <div className="flex">
+                  <span className={`flex-1 ms-3 whitespace-nowrap ${theme === "light" ? "text-black" : "text-white"}`}>Inbox</span>
+                  <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">
+                    69
+                  </span>
+                </div>
+              </div>
+            </Link>
+          </li>
+          <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+            <Link to={`comingsoon`}>
+              {/* two */}
+              <div className="flex ">
+                <img className="h-5" src={three} />
+                <div className="flex">
+                  <span className={`flex-1 ms-3 whitespace-nowrap ${theme === "light" ? "text-black" : "text-white"}`}>Users</span>
+                </div>
+              </div>
+            </Link>
+          </li>
+          <li>
             <a
-            target="_blank"
-              className="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
               href="https://github.com/sameerkali/ProTracker"
+              target="_blank"
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
-              Know more about this app
+              {/* four */}
+              {/* <img className="h-5" src={four} /> */}
+              <FaGithub size={23} />
+              <span className={`flex-1 ms-3 whitespace-nowrap ${theme === "light" ? "text-black" : "text-white"}`}>GiHhub</span>
             </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              {/* five */}
+              <img className="h-5 " src={five} />
+              <div className="ml-2" />
+              <Logout />
+            </a>
+          </li>
+        </ul>
+        <div
+          id="dropdown-cta"
+          className="p-4 mt-6 rounded-lg bg-blue-50 dark:bg-blue-900"
+          role="alert"
+        >
+          <div className="flex items-center mb-3">
+            <span className="bg-orange-100 text-orange-800 text-sm font-semibold me-2 px-2.5 py-0.5 rounded dark:bg-orange-200 dark:text-orange-900">
+              Beta
+            </span>
+            <button
+              type="button"
+              className="ms-auto -mx-1.5 -my-1.5 bg-blue-50 inline-flex justify-center items-center w-6 h-6 text-blue-900 rounded-lg focus:ring-2 focus:ring-blue-400 p-1 hover:bg-blue-200 h-6 w-6 dark:bg-blue-900 dark:text-blue-400 dark:hover:bg-blue-800"
+              data-dismiss-target="#dropdown-cta"
+              aria-label="Close"
+            >
+              <span className="sr-only">Close</span>
+              <img src={close} />
+            </button>
           </div>
-          <h1 className="text-yellow-600 mt-10">
-            This app is totally Open Source if you are a developer feel free to
-            contribute{" "}
-          </h1>
-          <Link to="/contributers">
-            <h1 className="underline text-green-600">Contributers</h1>
-          </Link>
+          <p className="mb-3 text-sm text-blue-800 dark:text-blue-400">
+            The platform for handling your tasks with ProTracker to visualize
+            your performance.
+          </p>
+          <a
+            target="_blank"
+            className="text-sm text-blue-800 underline font-medium hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300"
+            href="https://github.com/sameerkali/ProTracker"
+          >
+            Know more about this app
+          </a>
         </div>
-      </aside>
+        <h1 className="text-yellow-600 mt-10">
+          This app is totally Open Source if you are a developer feel free to
+          contribute{" "}
+        </h1>
+        <Link to="/contributers">
+          <h1 className="underline text-green-600">Contributers</h1>
+        </Link>
+      </div>
+    </aside>
   );
 };
 

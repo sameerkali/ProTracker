@@ -5,6 +5,7 @@ import { auth } from "../firebase";
 
 const Logout = () => {
   const navigate = useNavigate();
+  const theme = localStorage.getItem("theme");
 
   const handleLogout = async () => {
     try {
@@ -18,10 +19,7 @@ const Logout = () => {
   };
 
   return (
-    <button
-      className=" "
-      onClick={handleLogout}
-    >
+    <button className={`text-${theme === "light" ? "black" : "white"}`} onClick={handleLogout}>
       LogOut
     </button>
   );
