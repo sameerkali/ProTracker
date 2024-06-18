@@ -16,12 +16,24 @@ const TodoItem = ({ todo, index, user }) => {
     });
     setEditIndex(null);
   };
-    const handleCheckboxChange = async (id, isCompleted) => {
+
+  const handleCheckboxChange = async (id, isCompleted) => {
     await updateDoc(doc(db, "todos", id), { isCompleted: !isCompleted });
   };
 
   const handleDeleteTodo = async () => {
     await deleteDoc(doc(db, "todos", todo.id));
+  };
+
+  const formatDate = (dateObj) => {
+    const months = [
+      "January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"
+    ];
+    const day = dateObj.getDate();
+    const month = months[dateObj.getMonth()];
+    const year = dateObj.getFullYear();
+    return `${day} ${month} ${year}`;
   };
 
   return (
@@ -85,6 +97,13 @@ const TodoItem = ({ todo, index, user }) => {
                         : ""}`}
                     >
                       {todo.data.description}
+                    </div>
+                    <div
+                      className={`text-[12px] ${todo.data.isCompleted
+                        ? ""
+                        : "text-green-500"}`}
+                    >
+                      {formatDate(todo.data.date.toDate())}
                     </div>
                   </div>
                 </div>

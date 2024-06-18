@@ -6,6 +6,7 @@ import TodoList from "./TodoList";
 import TodoForm from "./TodoForm";
 import { db } from "../../firebase";
 import { drawr } from "../../assets";
+import ContributionGraph from "../../Components/ContributionGraph";
 
 const auth = getAuth();
 
@@ -69,6 +70,7 @@ const Home = () => {
       </button>
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="pr-4 pl-4 pb-4 sm:ml-64">
+      {/* <ContributionGraph/> */}
         <div className="">
           <div className="mt-8" />
           <div className="flex flex-col mb-3">

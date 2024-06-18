@@ -4,34 +4,28 @@ import { db } from "../../firebase";
 import Calendar from "react-calendar";
 
 const TodoForm = (sidebarOpen, setSidebarOpen) => {
-  // console.log(sidebarOpen)
-    const nameRef = useRef(null);
-    const descriptionRef = useRef(null);
+
+
+  const nameRef = useRef(null);
+  const descriptionRef = useRef(null);
   const [isPriorityDropdownOpen, setIsPriorityDropdownOpen] = useState(false);
   const [isLabelDropdownOpen, setIsLabelDropdownOpen] = useState(false);
   const [selectedPriority, setSelectedPriority] = useState("");
   const [selectedLabel, setSelectedLabel] = useState("");
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [value, onChange] = useState(new Date());
-
-
-    const handleResize = ref => {
+  
+  const handleResize = ref => {
     const textarea = ref.current;
     textarea.style.height = "auto";
     textarea.style.height = `${textarea.scrollHeight}px`;
   };
 
-  const toggleCalendar = () => {
-    setShowCalendar(!showCalendar);
-  };
-
   const handleAddTodo = async () => {
     const user = await JSON.parse(localStorage.getItem("user"));
-    // console.log(user)
     if (user && user.uid) {
       const name = nameRef.current.value;
       const description = descriptionRef.current.value;
-  
+      const currentDate = new Date(); // Get the current date and time
+
       if (name.trim() !== "") {
         await addDoc(collection(db, "todos"), {
           name: name.trim(),
@@ -39,7 +33,7 @@ const TodoForm = (sidebarOpen, setSidebarOpen) => {
           isCompleted: false,
           priority: selectedPriority || "",
           label: selectedLabel || "",
-          date: value,
+          date: currentDate, // Save the current date and time
           userUID: user.uid
         });
         nameRef.current.value = "";
@@ -55,10 +49,7 @@ const TodoForm = (sidebarOpen, setSidebarOpen) => {
   };
   
 
-  const handleOnChangeDate = (date) => {
-    onChange(date);
-    setShowCalendar(false);
-  };
+
 
   return (
     <div className="my-4 flex items-center justify-center">
@@ -78,17 +69,7 @@ const TodoForm = (sidebarOpen, setSidebarOpen) => {
                 />
               </div>
               <div className="felx flex-col px-3 pb-3 text-[13px] ">
-                <button
-                  type="submit"
-                  className="border border-gray-300 rounded-md mx-1 px-[19px] py-[3px] hover:bg-gray-800 hover:text-white"
-                  onClick={toggleCalendar}
-                >
-                  Due date
-                </button>
-                {showCalendar &&
-                  <div className="absolute bg-gray-800 p-3">
-                    <Calendar onChange={(date)=>handleOnChangeDate(date)} value={value} />
-                  </div>}
+            
 
                 <div className="dropdown dropdown-hover">
                   <button

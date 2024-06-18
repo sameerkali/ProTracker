@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
-import { close, drawr, five, one, three, two } from "../../assets";
+import { close, drawr, five, one, three, two, gradient } from "../../assets";
 import Profile from "../../Components/profile";
 import Logout from "../../Components/Logout";
 
@@ -71,8 +71,22 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           <li className="flex justify-start">
             <Profile />
           </li>
+          <Link to={`/`}>
+          <li className="mt-4 flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+              <div className="flex ">
+                <img className="h-5" src={gradient} />
+                <div className="flex">
+                  <span className={`flex-1 ms-3 whitespace-nowrap ${theme === "light" ? "text-black" : "text-white"}`}>
+                    Todos
+                  </span>
+                </div>
+                
+              </div>
+          </li>
+            </Link>
           <li className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-            <Link to={`comingsoon`}>
+            
+            <Link to={`graph`}>
               {/* two */}
 
               <div className="flex ">
@@ -168,12 +182,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             Know more about this app
           </a>
         </div>
-        <h1 className="text-yellow-600 mt-10">
+        {/* <h1 className="text-yellow-600 mt-10">
           This app is totally Open Source if you are a developer feel free to
           contribute{" "}
-        </h1>
+        </h1> */}
         <Link to="/contributers">
-          <h1 className="underline text-green-600">Contributers</h1>
+          <h1 className="underline text-green-600 mt-4">Contributers</h1>
         </Link>
       </div>
     </aside>
